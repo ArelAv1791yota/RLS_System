@@ -1,16 +1,27 @@
-# This is a sample Python script.
+array_str = input("Введите параметры по шаблону - (цель, начало диапазона, конец диапазона) через пробел: ").split()
+array = [int(item) for item in array_str]
+print(array)
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+class Azimuth():
+    def __init__(self, Array):
+        self.fArray = Array
+        self.Array = Array
+        self.Flag = False
+        self.zero_circle()
+        self.az_inSector()
+        self.display_out()
+
+    def zero_circle(self):
+        if self.Array[1] > self.Array[2]:
+            self.Array[1] = self.Array[1]-360
+            self.Array[0] = self.Array[0]-360
+
+    def az_inSector(self):
+        if (self.Array[1] <= self.Array[0]) and (self.Array[0] <= self.Array[2]):
+            self.Flag = True
+
+    def display_out(self):
+        print(f"Цель по направлению {self.fArray[0]} в диапазоне от {self.fArray[1]} до {self.fArray[2]} - {self.Flag}")
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+Started = Azimuth(array)

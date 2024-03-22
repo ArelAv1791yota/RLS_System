@@ -1,11 +1,13 @@
+from copy import deepcopy
+
+
 array_str = input("Введите параметры по шаблону - (цель, начало диапазона, конец диапазона) через пробел: ").split()
 array = [int(item) for item in array_str]
-print(array)
 
 class Azimuth():
     def __init__(self, Array):
-        self.fArray = Array
         self.Array = Array
+        self.f = deepcopy(Array)
         self.Flag = False
         self.zero_circle()
         self.az_inSector()
@@ -21,7 +23,7 @@ class Azimuth():
             self.Flag = True
 
     def display_out(self):
-        print(f"Цель по направлению {self.fArray[0]} в диапазоне от {self.fArray[1]} до {self.fArray[2]} - {self.Flag}")
+        print(f"Цель по направлению {self.f[0]} в диапазоне от {self.f[1]} до {self.f[2]} - {self.Flag}")
 
 
 Started = Azimuth(array)
